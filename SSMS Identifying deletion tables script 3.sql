@@ -1,4 +1,4 @@
-use dataeng
+use dataeng                                                     --Query was used to identify faulty tables likely caused by a failing deletion data pipeline used to reflect record updates/changes from the Oracle database to Azure Synapse.
 
 select * from [Config].[WaterMarkTable_OraSarah] 				--all 24 failed tables 6/24
 where TableName in ('AR_RECEIVABLE_APPLICATIONS_ALL',
@@ -25,9 +25,6 @@ where TableName in ('AR_RECEIVABLE_APPLICATIONS_ALL',
 'PO_RELEASES_ALL',
 'HZ_PARTY_SITES_EXT_B',
 'AP_EXPENSE_REPORT_HEADERS_ALL');
-
-
-Select count(*) from MTL_GENERIC_DISPOSITIONS
 
 SELECT * 
 FROM [Config].[WaterMarkTable_OraSarah]
