@@ -1,5 +1,5 @@
---PL/SQL Script for Quering entire Business groups tables’ record counts with one script using date restriction:
---This script was replicated in T-sql for the Azure datawarehouse using the appropriate schema to compare the records for validation with the same date restriction.
+--PL/SQL Script for Quering entire Business groups tables’ record counts with one script using date restriction to avoid any live/recent updates to throw off my record count comparisons.
+--This script was replicated in T-sql for the Azure Synapse using the appropriate schema to compare the records for validation with the same date restriction.
 --Database:
 SELECT 'FND_FLEX_VALUE_SETS' AS TableName, COUNT(*) 
 FROM APPS.FND_FLEX_VALUE_SETS
