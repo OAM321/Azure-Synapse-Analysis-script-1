@@ -57,7 +57,37 @@ ORDER BY creation_date DESC;
 select count(*) from apps.CST_ITEM_COSTS
 where trunc(creation_date) >= to_date('01-MAR-2024','DD-MON-YYYY')
  AND trunc(creation_date) <= to_date('28-JUN-2024','DD-MON-YYYY')
- 
+
+--Oracle EBS									--- to find counts by each day and compare count differences by day in Oracle source and Azure Synapse
+
+select  trunc(creation_date), count(1)
+from AP_INVOICE_DISTRIBUTIONS_ALL
+where trunc(creation_date) <= to_date('26-JUN-2024','DD-MON-YYYY')
+group by trunc(creation_date)
+order by trunc(creation_date) desc
+
+select trunc(creation_date), count(1)	
+from apps.CST_ITEM_COSTS	
+group by trunc(creation_date)	
+order by trunc(creation_date) desc	
+
+
+
+--Azure SYNAPSE
+
+
+select  convert(date,creation_date), count(1) 
+from orasarah_apps.AP_INVOICE_DISTRIBUTIONS_ALL
+where IsDeleted is null 
+and convert(date,creation_date) <= convert(date,'26-JUN-2024')
+group by convert(date,creation_date)
+order by convert(date,creation_date) desc
+
+select convert(date,creation_date), count(1)
+from orasarah_apps.CST_ITEM_COSTS
+where IsDeleted is null
+group by convert(date,creation_date)
+order by convert(date,creation_date) desc
  
  
 
